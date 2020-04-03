@@ -1,0 +1,24 @@
+{
+	"name": "edudemostorageSink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edudemostorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "student.csv",
+				"folderPath": "output",
+				"container": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

@@ -1,0 +1,125 @@
+{
+	"name": "edudemostorage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edudemostorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Student Profile.csv",
+				"folderPath": "input",
+				"container": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "CRMID",
+				"type": "String"
+			},
+			{
+				"name": "LAST_NAME",
+				"type": "String"
+			},
+			{
+				"name": "FIRST_NAME",
+				"type": "String"
+			},
+			{
+				"name": "MIDDLE_NAME",
+				"type": "String"
+			},
+			{
+				"name": "ADMIT_TERM",
+				"type": "String"
+			},
+			{
+				"name": "ADMIT_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "ACAD_CAREER",
+				"type": "String"
+			},
+			{
+				"name": "ADMIT_TYPE",
+				"type": "String"
+			},
+			{
+				"name": "ADMIT_TYPE_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "APPL_SOURCE",
+				"type": "String"
+			},
+			{
+				"name": "ACAD_PROG",
+				"type": "String"
+			},
+			{
+				"name": "ACAD_PROG_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "ACAD_PLAN",
+				"type": "String"
+			},
+			{
+				"name": "ACAD_PLAN_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "CURRENT_PROGRAM",
+				"type": "String"
+			},
+			{
+				"name": "CURRENT_PROGRAM_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "CURRENT_PLAN",
+				"type": "String"
+			},
+			{
+				"name": "CURRENT_PLAN_DESCR",
+				"type": "String"
+			},
+			{
+				"name": "GENDER",
+				"type": "String"
+			},
+			{
+				"name": "AGE_BY_YEARS",
+				"type": "String"
+			},
+			{
+				"name": "ADDRESS1",
+				"type": "String"
+			},
+			{
+				"name": "ADDRESS2",
+				"type": "String"
+			},
+			{
+				"name": "CITY",
+				"type": "String"
+			},
+			{
+				"name": "STATE",
+				"type": "String"
+			},
+			{
+				"name": "POSTAL",
+				"type": "String"
+			}
+		]
+	}
+}
