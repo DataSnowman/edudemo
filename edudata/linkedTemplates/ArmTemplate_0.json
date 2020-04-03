@@ -1,0 +1,192 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "edudata"
+		},
+		"edudemostorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'edudemostorage'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/edudemostorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('edudemostorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/edudemostorage')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "edudemostorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Student Profile.csv",
+						"folderPath": "input",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "CRMID",
+						"type": "String"
+					},
+					{
+						"name": "LAST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "FIRST_NAME",
+						"type": "String"
+					},
+					{
+						"name": "MIDDLE_NAME",
+						"type": "String"
+					},
+					{
+						"name": "ADMIT_TERM",
+						"type": "String"
+					},
+					{
+						"name": "ADMIT_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "ACAD_CAREER",
+						"type": "String"
+					},
+					{
+						"name": "ADMIT_TYPE",
+						"type": "String"
+					},
+					{
+						"name": "ADMIT_TYPE_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "APPL_SOURCE",
+						"type": "String"
+					},
+					{
+						"name": "ACAD_PROG",
+						"type": "String"
+					},
+					{
+						"name": "ACAD_PROG_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "ACAD_PLAN",
+						"type": "String"
+					},
+					{
+						"name": "ACAD_PLAN_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "CURRENT_PROGRAM",
+						"type": "String"
+					},
+					{
+						"name": "CURRENT_PROGRAM_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "CURRENT_PLAN",
+						"type": "String"
+					},
+					{
+						"name": "CURRENT_PLAN_DESCR",
+						"type": "String"
+					},
+					{
+						"name": "GENDER",
+						"type": "String"
+					},
+					{
+						"name": "AGE_BY_YEARS",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS1",
+						"type": "String"
+					},
+					{
+						"name": "ADDRESS2",
+						"type": "String"
+					},
+					{
+						"name": "CITY",
+						"type": "String"
+					},
+					{
+						"name": "STATE",
+						"type": "String"
+					},
+					{
+						"name": "POSTAL",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/edudemostorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/edudemostorageSink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "edudemostorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "student.csv",
+						"folderPath": "output",
+						"container": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/edudemostorage')]"
+			]
+		}
+	]
+}
