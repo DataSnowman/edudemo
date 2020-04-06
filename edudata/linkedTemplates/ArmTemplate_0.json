@@ -173,7 +173,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "student.csv",
 						"folderPath": "output",
 						"container": "data"
 					},
@@ -221,6 +220,43 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/edudemostorage')]",
 				"[concat(variables('factoryId'), '/datasets/edudemostorageSink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/StudentPL')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "studentProfile",
+						"type": "ExecuteWranglingDataflow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "studentProfile",
+								"type": "DataFlowReference",
+								"datasetParameters": {
+									"edudemostorage": {},
+									"Sink1": {}
+								}
+							},
+							"staging": {}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/studentProfile')]"
 			]
 		}
 	]
