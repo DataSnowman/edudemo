@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "student.csv",
 				"folderPath": "output",
 				"container": "data"
 			},
