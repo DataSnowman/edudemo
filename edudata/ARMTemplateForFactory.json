@@ -187,6 +187,41 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/studentProfile')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "WranglingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"name": "edudemostorage",
+							"script": "",
+							"dataset": {
+								"referenceName": "edudemostorage",
+								"type": "DatasetReference"
+							}
+						}
+					],
+					"sinks": [
+						{
+							"name": "Sink1",
+							"dataset": {
+								"referenceName": "edudemostorageSink",
+								"type": "DatasetReference"
+							},
+							"script": "sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Sink1"
+						}
+					],
+					"script": "section Section1;\r\nshared edudemostorage = let\r\n  AdfDoc = AzureStorage.BlobContents(\"https://edudemostorage.blob.core.windows.net/data/input/Student Profile.csv\"),\r\n  Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv]),\r\n  PromotedHeaders = Table.PromoteHeaders(Csv, [PromoteAllScalars = true])\r\nin\r\n  PromotedHeaders;\r\nshared UserQuery = let\r\n  Source = edudemostorage,\r\n  #\"Removed columns\" = Table.RemoveColumns(Source, {\"ADMIT_DESCR\", \"ADMIT_TYPE_DESCR\", \"ACAD_PROG_DESCR\", \"ACAD_PLAN_DESCR\", \"CURRENT_PROGRAM_DESCR\", \"CURRENT_PLAN_DESCR\"}),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed columns\", {{\"AGE_BY_YEARS\", Int64.Type}, {\"ADMIT_TERM\", Int64.Type}}),\r\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Changed column type\", {\"ADMIT_TYPE\", \"APPL_SOURCE\", \"ACAD_PROG\", \"ACAD_PLAN\", \"CURRENT_PROGRAM\", \"CURRENT_PLAN\"})\r\nin\r\n  #\"Removed columns 1\";\r\n"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/edudemostorage')]",
+				"[concat(variables('factoryId'), '/datasets/edudemostorageSink')]"
+			]
 		}
 	]
 }
