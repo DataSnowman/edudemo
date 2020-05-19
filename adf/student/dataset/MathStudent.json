@@ -1,0 +1,75 @@
+{
+	"name": "MathStudent",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edudemostorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Term",
+				"type": "String"
+			},
+			{
+				"name": "CRMID",
+				"type": "String"
+			},
+			{
+				"name": "Subject",
+				"type": "String"
+			},
+			{
+				"name": "Catalog",
+				"type": "String"
+			},
+			{
+				"name": "Class_Section",
+				"type": "String"
+			},
+			{
+				"name": "Title",
+				"type": "String"
+			},
+			{
+				"name": "Course_Credit_Hour",
+				"type": "String"
+			},
+			{
+				"name": "Instruction_Mode",
+				"type": "String"
+			},
+			{
+				"name": "MidTerm_Grade",
+				"type": "String"
+			},
+			{
+				"name": "EndofSem_Grade",
+				"type": "String"
+			},
+			{
+				"name": "Enrolled_Dropped",
+				"type": "String"
+			},
+			{
+				"name": "Enrolled_Date",
+				"type": "String"
+			},
+			{
+				"name": "Dropped_Date",
+				"type": "String"
+			}
+		]
+	}
+}

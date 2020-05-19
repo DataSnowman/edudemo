@@ -1,0 +1,32 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "studentMath",
+						"type": "DatasetReference"
+					},
+					"name": "studentMath"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "MathStudent",
+						"type": "DatasetReference"
+					},
+					"name": "ScoredFile"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SelectAMLColumns"
+				}
+			],
+			"script": "source(output(\n\t\tschool as string,\n\t\tsex as string,\n\t\tage as integer,\n\t\taddress as string,\n\t\tfamsize as string,\n\t\tPstatus as string,\n\t\tMedu as integer,\n\t\tFedu as integer,\n\t\tMjob as string,\n\t\tFjob as string,\n\t\treason as string,\n\t\tguardian as string,\n\t\ttraveltime as integer,\n\t\tstudytime as integer,\n\t\tfailures as integer,\n\t\tschoolsup as string,\n\t\tfamsup as string,\n\t\tpaid as string,\n\t\tactivities as string,\n\t\tnursery as string,\n\t\thigher as string,\n\t\tinternet as string,\n\t\tromantic as string,\n\t\tfamrel as integer,\n\t\tfreetime as integer,\n\t\tgoout as integer,\n\t\tDalc as integer,\n\t\tWalc as integer,\n\t\thealth as integer,\n\t\tabsences as integer,\n\t\tG1 as integer,\n\t\tG2 as integer,\n\t\tG3 as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> studentMath\nstudentMath select(mapColumn(\n\t\tschool,\n\t\tsex,\n\t\tage,\n\t\taddress,\n\t\tfamsize,\n\t\tPstatus,\n\t\tMedu,\n\t\tFedu,\n\t\tMjob,\n\t\tFjob,\n\t\treason,\n\t\tguardian,\n\t\ttraveltime,\n\t\tstudytime,\n\t\tfailures,\n\t\tschoolsup,\n\t\tfamsup,\n\t\tpaid,\n\t\tactivities,\n\t\tnursery,\n\t\thigher,\n\t\tinternet,\n\t\tromantic,\n\t\tfamrel,\n\t\tfreetime,\n\t\tgoout,\n\t\tDalc,\n\t\tWalc,\n\t\thealth,\n\t\tabsences,\n\t\tG1,\n\t\tG2\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SelectAMLColumns\nSelectAMLColumns sink(input(\n\t\tTerm as string,\n\t\tCRMID as string,\n\t\tSubject as string,\n\t\tCatalog as string,\n\t\tClass_Section as string,\n\t\tTitle as string,\n\t\tCourse_Credit_Hour as string,\n\t\tInstruction_Mode as string,\n\t\tMidTerm_Grade as string,\n\t\tEndofSem_Grade as string,\n\t\tEnrolled_Dropped as string,\n\t\tEnrolled_Date as string,\n\t\tDropped_Date as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> ScoredFile"
+		}
+	}
+}
