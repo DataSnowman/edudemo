@@ -1,0 +1,165 @@
+{
+	"name": "studentMath",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "e2edemo",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "school",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sex",
+				"type": "nvarchar"
+			},
+			{
+				"name": "age",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "address",
+				"type": "nvarchar"
+			},
+			{
+				"name": "famsize",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pstatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Medu",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Fedu",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Mjob",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Fjob",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reason",
+				"type": "nvarchar"
+			},
+			{
+				"name": "guardian",
+				"type": "nvarchar"
+			},
+			{
+				"name": "traveltime",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "studytime",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "failures",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "schoolsup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "famsup",
+				"type": "nvarchar"
+			},
+			{
+				"name": "paid",
+				"type": "nvarchar"
+			},
+			{
+				"name": "activities",
+				"type": "nvarchar"
+			},
+			{
+				"name": "nursery",
+				"type": "nvarchar"
+			},
+			{
+				"name": "higher",
+				"type": "nvarchar"
+			},
+			{
+				"name": "internet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "romantic",
+				"type": "nvarchar"
+			},
+			{
+				"name": "famrel",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "freetime",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "goout",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dalc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Walc",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "health",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "absences",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "G1",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "G2",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "G3",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "studentMath"
+		}
+	}
+}
